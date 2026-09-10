@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Naresh Kumar | Software Developer & CSE Undergraduate</title>
+  
+  <!-- Font Awesome & Google Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-dark: #1e2842;
+      --card-bg: #0e2350;
+      --card-hover: #b1bed0;
+      --text-main: #576c98;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.15);
+      --border-color: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    code, pre {
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background-color: rgba(11, 15, 25, 0.85);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 70px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 100px 0 80px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background-color: var(--accent-glow);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .badge i {
+      font-size: 0.75rem;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin-bottom: 32px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #0b0f19;
+    }
+
+    .btn-primary:hover {
+      background-color: #7dd3fc;
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      background-color: var(--card-bg);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Section Titles */
+    section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--accent);
+      font-size: 1.35rem;
+    }
+
+    /* Skills Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 24px;
+      border-radius: 8px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .skill-card h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.82rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--text-muted);
+    }
+
+    /* Experience & Training */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .timeline-item {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);    
+      padding: 24px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .timeline-header h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+
+    .timeline-company {
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .timeline-duration {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: 'Fira Code', monospace;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .timeline-item ul {
+      margin-left: 20px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline-item li {
+      margin-bottom: 6px;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .project-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    /* Contact Section */
+    .contact-box {
+      background: linear-gradient(180deg, var(--card-bg) 0%, rgba(17, 24, 39, 0.5) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+
+    .contact-box p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 30px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2.1rem;
+      }
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#" class="brand">&lt;<span>Naresh</span> /&gt;</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#experience">Training</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="container">
+    <section class="hero" id="about">
+      <div class="badge">
+        <i class="fa-solid fa-circle"></i> CSE Undergraduate & Developer
+      </div>
+      <h1>Building Practical Code & Exploring Intelligent Systems.</h1>
+      <p>
+        Hi, I'm <strong>Naresh Kumar</strong>. I specialize in C, C++, and Python with practical experience in Full-Stack Web Development, Machine Learning concepts, and Cloud platforms.
+      </p>
+      <div class="cta-row">
+        <a href="mailto:2024pceacsnaresh107@poornima.org" class="btn btn-primary">
+          <i class="fa-solid fa-envelope"></i> Get In Touch
+        </a>
+        <a href="https://linkedin.com/in/naresh-kumar" target="_blank" class="btn btn-outline">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="#projects" class="btn btn-outline">
+          <i class="fa-solid fa-code"></i> View Work
+        </a>
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section id="skills">
+      <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> Technical Arsenal</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h3>Programming Languages</h3>
+          <div class="tags">
+            <span class="tag">C</span>
+            <span class="tag">C++</span>
+            <span class="tag">Python</span>
+            <span class="tag">SQL</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Web & Data Architecture</h3>
+          <div class="tags">
+            <span class="tag">HTML5 / CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">RESTful Basics</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>AI & Core Systems</h3>
+          <div class="tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Reinforcement Learning</span>
+            <span class="tag">Knowledge Representation</span>
+            <span class="tag">Network Protocols</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <h3>Cloud & Dev Tools</h3>
+          <div class="tags">
+            <span class="tag">Google Cloud Platform</span>
+            <span class="tag">Snowflake</span>
+            <span class="tag">VS Code</span>
+            <span class="tag">Anaconda</span>
+            <span class="tag">Git / GitHub</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Training & Practical Experience -->
+    <section id="experience">
+      <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Practical Training & Experience</h2>
+      <div class="timeline">
+        
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3>Full Stack Web Development Trainee</h3>
+              <div class="timeline-company">Carrier IT Edge</div>
+            </div>
+            <span class="timeline-duration">45 Days Intensive</span>
+          </div>
+          <ul>
+            <li>Engineered and deployed responsive full-stack modules connecting dynamic frontend interfaces with backend services.</li>
+            <li>Designed relational database schemas using MySQL to handle data persistence and structured querying.</li>
+            <li>Utilized Git version control workflows for managing source code, branching, and repository stability.</li>
+          </ul>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div>
+              <h3>Python Programming Trainee</h3>
+              <div class="timeline-company">Codex Pvt. Ltd.</div>
+            </div>
+            <span class="timeline-duration">15 Days Practical</span>
+          </div>
+          <ul>
+            <li>Implemented core Python solutions emphasizing object-oriented design and modular programming.</li>
+            <li>Constructed algorithmic problem-solving scripts for structured data handling and manipulation tasks.</li>
+            <li>Worked with Python virtual environments and package managers for clean project configurations.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Projects & Focus Areas -->
+    <section id="projects">
+      <h2 class="section-title"><i class="fa-solid fa-diagram-project"></i> Focus Areas & Projects</h2>
+      <div class="projects-grid">
+        
+        <div class="project-card">
+          <div>
+            <h3>Network Protocol Analysis & Simulation</h3>
+            <p>
+              Exploration of OSI stack layers, packet transmission mechanics, error detection logic, and routing algorithms under simulated conditions.
+            </p>
+          </div>
+          <div class="tags">
+            <span class="tag">Networking</span>
+            <span class="tag">TCP/IP</span>
+            <span class="tag">Protocol Analysis</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Knowledge Representation & Logic Models</h3>
+            <p>
+              Structured reasoning implementations using First-Order Logic and formal inference strategies, alongside discrete state-space evaluations.
+            </p>
+          </div>
+          <div class="tags">
+            <span class="tag">AI Systems</span>
+            <span class="tag">First-Order Logic</span>
+            <span class="tag">Algorithms</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div>
+            <h3>Cloud & Data Pipeline Integration</h3>
+            <p>
+              Practical experiments leveraging Google Cloud storage and querying solutions alongside Snowflake architectures for modern data tasks.
+            </p>
+          </div>
+          <div class="tags">
+            <span class="tag">GCP</span>
+            <span class="tag">Snowflake</span>
+            <span class="tag">Cloud Computing</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="contact-box">
+        <h2>Let's Collaborate</h2>
+        <p>
+          Open to technical internships, open-source projects, and engineering discussions.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:2024pceacsnaresh107@poornima.org" class="btn btn-primary">
+            <i class="fa-solid fa-envelope"></i> Email Me
+          </a>
+          <a href="tel:+919256187601" class="btn btn-outline">
+            <i class="fa-solid fa-phone"></i> +91 9256187601
+          </a>
+          <a href="https://linkedin.com/in/naresh-kumar" target="_blank" class="btn btn-outline">
+            <i class="fa-brands fa-linkedin"></i> Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 Naresh Kumar. Hosted via GitHub Pages / Modern Web Standards.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
